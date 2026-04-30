@@ -1,0 +1,104 @@
+/* Global styles and design tokens for Provision Planner.
+   Colors are defined as HSL CSS variables so Tailwind can apply
+   opacity modifiers (e.g. bg-primary/10) throughout the app.
+   The palette is warm — terracotta primary, cream background, honey accent. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light mode tokens */
+:root {
+  --radius: 0.875rem;
+
+  --background:            38 60% 96%;
+  --foreground:            25 30% 20%;
+
+  --card:                  38 50% 98%;
+  --card-foreground:       25 30% 20%;
+
+  --popover:               38 50% 98%;
+  --popover-foreground:    25 30% 20%;
+
+  --primary:               20 50% 42%;   /* terracotta */
+  --primary-foreground:    38 60% 97%;
+
+  --secondary:             38 30% 88%;   /* warm sand */
+  --secondary-foreground:  25 25% 28%;
+
+  --muted:                 38 25% 91%;
+  --muted-foreground:      30 15% 45%;
+
+  --accent:                42 65% 70%;   /* honey */
+  --accent-foreground:     25 30% 22%;
+
+  --destructive:           10 65% 45%;
+  --destructive-foreground: 38 60% 97%;
+
+  --border:                38 20% 84%;
+  --input:                 38 22% 87%;
+  --ring:                  20 50% 42%;
+}
+
+/* Dark mode overrides */
+.dark {
+  --background:            25 20% 14%;
+  --foreground:            38 40% 92%;
+  --card:                  25 18% 18%;
+  --card-foreground:       38 40% 92%;
+  --popover:               25 18% 18%;
+  --popover-foreground:    38 40% 92%;
+  --primary:               20 55% 58%;
+  --primary-foreground:    25 20% 14%;
+  --secondary:             25 15% 24%;
+  --secondary-foreground:  38 40% 92%;
+  --muted:                 25 14% 22%;
+  --muted-foreground:      38 15% 62%;
+  --accent:                42 45% 50%;
+  --accent-foreground:     25 20% 14%;
+  --destructive:           10 60% 55%;
+  --destructive-foreground: 38 40% 92%;
+  --border:                25 15% 28%;
+  --input:                 25 15% 28%;
+  --ring:                  20 55% 58%;
+}
+
+@layer base {
+  * { border-color: hsl(var(--border)); box-sizing: border-box; }
+
+  html { font-family: "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    /* Subtle corner gradients give the page a warm, textured feel */
+    background-image:
+      radial-gradient(at 0% 0%,   hsla(42, 65%, 70%, 0.18) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(20, 50%, 42%, 0.10) 0px, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Fraunces", "Georgia", serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-warm {
+    background-image: linear-gradient(135deg, hsl(18 52% 48%) 0%, hsl(20 50% 42%) 50%, hsl(22 48% 36%) 100%);
+  }
+  .bg-gradient-cream {
+    background-image: linear-gradient(180deg, hsl(38 60% 96%) 0%, hsl(38 55% 92%) 100%);
+  }
+  .shadow-warm { box-shadow: 0 12px 32px -12px rgba(139, 74, 50, 0.35); }
+  .shadow-soft { box-shadow: 0 4px 18px -6px rgba(80, 50, 30, 0.18); }
+  .font-display { font-family: "Fraunces", "Georgia", serif; }
+}
+
+/* Strip UI chrome when printing the grocery list */
+@media print {
+  .print\:hidden { display: none !important; }
+  body { background: white; color: black; }
+}
